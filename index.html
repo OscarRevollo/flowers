@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>21 de septiembre 🌻</title>
+<style>
+  *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  body{background:linear-gradient(#dff5ff 0 62%,#a9dc86 62% 100%);color:#403b25}
+  .scene{position:relative;width:100%;height:100%;min-height:420px;cursor:pointer;user-select:none;overflow:hidden}
+  .sun{position:absolute;right:7%;top:7%;width:74px;height:74px;border-radius:50%;background:#ffd84a;box-shadow:0 0 45px #ffe889;animation:pulse 3s ease-in-out infinite}
+  @keyframes pulse{50%{transform:scale(1.06)}}
+  .cloud{position:absolute;background:#fff;border-radius:50px;opacity:.8;width:120px;height:35px;animation:float 12s linear infinite}
+  .cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}.cloud:before{width:45px;height:45px;left:20px;top:-20px}.cloud:after{width:55px;height:55px;right:18px;top:-28px}
+  .c1{left:-130px;top:15%}.c2{left:-200px;top:29%;animation-delay:-6s;transform:scale(.7)}
+  @keyframes float{to{left:110%}}
+  .card{position:absolute;z-index:20;left:50%;top:18%;transform:translate(-50%,-50%);width:min(90%,520px);text-align:center;background:#fffdf0e8;border:2px solid #ffe169;border-radius:22px;padding:14px 18px;box-shadow:0 10px 30px #594d2526;backdrop-filter:blur(5px)}
+  h1{font-size:clamp(20px,5vw,32px);margin:0 0 5px}.msg{font-size:clamp(13px,3vw,17px);margin:0}.hint{font-size:12px;opacity:.68;margin-top:6px}
+  .garden{position:absolute;inset:0;z-index:5}.flower{position:absolute;bottom:12%;width:74px;height:180px;transform-origin:50% 100%;animation:grow .85s cubic-bezier(.2,.8,.2,1) both,sway 3s ease-in-out .9s infinite alternate}
+  @keyframes grow{from{transform:scaleY(0) scaleX(.5);opacity:0}to{transform:scaleY(1) scaleX(1);opacity:1}}@keyframes sway{to{rotate:2.5deg}}
+  .stem{position:absolute;left:35px;bottom:0;width:6px;height:125px;background:#4c9b49;border-radius:5px}.leaf{position:absolute;width:33px;height:17px;background:#63b75d;border-radius:100% 0 100% 0}.l1{left:36px;bottom:55px;rotate:-25deg}.l2{left:9px;bottom:78px;rotate:205deg}
+  .head{position:absolute;left:8px;top:0;width:62px;height:62px;animation:spinIn .8s ease both}@keyframes spinIn{from{rotate:-80deg;scale:.2}to{rotate:0;scale:1}}
+  .petal{position:absolute;left:23px;top:2px;width:18px;height:31px;border-radius:50%;background:#ffd92f;transform-origin:9px 29px;box-shadow:inset 0 -4px #f4b91d}.center{position:absolute;left:20px;top:20px;width:24px;height:24px;border-radius:50%;background:#765024;z-index:2}
+  .parrot{position:absolute;z-index:15;right:8%;bottom:28%;font-size:56px;filter:drop-shadow(0 5px 3px #0002);animation:bob 1.7s ease-in-out infinite;transition:.35s}.parrot:after{content:"";position:absolute;width:80px;height:7px;background:#7c532f;border-radius:8px;left:-10px;bottom:-4px;z-index:-1}@keyframes bob{50%{translate:0 -7px}}
+  .bubble{position:absolute;z-index:16;right:4%;bottom:44%;max-width:190px;background:white;border-radius:18px 18px 4px 18px;padding:10px 12px;font-size:13px;box-shadow:0 6px 18px #0002;opacity:0;transform:scale(.7);transition:.25s}.bubble.show{opacity:1;transform:scale(1)}
+  .agent{position:absolute;left:5%;bottom:6%;z-index:14;background:#24273a;color:#e7e9ff;border-radius:15px;padding:10px 12px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;box-shadow:0 8px 20px #0003;max-width:220px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#77ef83;margin-right:6px;box-shadow:0 0 8px #77ef83}.agent span{opacity:.8}.spark{position:absolute;pointer-events:none;z-index:30;font-size:20px;animation:pop .8s ease-out forwards}@keyframes pop{to{translate:0 -55px;opacity:0;scale:1.6}}
+  .final{display:none;font-weight:650;color:#7b5d00}.final.show{display:block}.initial.hide{display:none}
+  @media(max-height:500px){.card{top:20%;padding:9px 14px}.flower{height:140px}.stem{height:92px}.parrot{bottom:24%}.bubble{bottom:45%}.agent{bottom:2%}}
+
+  .character{position:absolute;z-index:15;filter:drop-shadow(0 5px 3px #0002);cursor:pointer;transition:opacity .55s,transform .55s;animation:bob 1.7s ease-in-out infinite}
+  .character .tag{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:5px;background:#fffdf0e8;border:1px solid #ffe169;border-radius:999px;padding:2px 7px;font-size:10px;white-space:nowrap}
+  .parrot.main{right:7%;bottom:27%;font-size:54px}
+  .parrot.marketing{right:20%;bottom:20%;font-size:48px;animation-delay:-.5s}
+  .owl{left:8%;bottom:29%;font-size:52px;animation-delay:-.9s}
+  .hidden-char{opacity:0;transform:translateY(-55px) scale(.5);pointer-events:none}
+  .hidden-char.arrived{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  .bubble{right:auto;left:50%;bottom:45%;transform:translateX(-50%) scale(.7);max-width:min(78%,330px);text-align:center}
+  .bubble.show{transform:translateX(-50%) scale(1)}
+  .speaker{font-weight:750}
+  @media(max-width:520px){.parrot.main{right:5%;font-size:46px}.parrot.marketing{right:25%;font-size:42px}.owl{left:5%;font-size:45px}.character .tag{display:none}.bubble{bottom:43%}}
+
+
+  .char-bubble{position:absolute;display:block;width:190px;max-width:42vw;background:#fffef4;border:1px solid #ffe16a;border-radius:14px;padding:9px 11px;font:600 12px/1.3 system-ui;color:#3c351c;box-shadow:0 8px 20px #0002;opacity:0;pointer-events:none;transition:.18s;z-index:40}
+  .char-bubble::after{content:"";position:absolute;width:10px;height:10px;background:#fffef4;border-right:1px solid #ffe16a;border-bottom:1px solid #ffe16a;transform:rotate(45deg)}
+  .char-bubble.show{opacity:1}
+  #parrot1 .char-bubble{right:35px;bottom:65px}
+  #parrot1 .char-bubble::after{right:17px;bottom:-6px}
+  #parrot2 .char-bubble{right:25px;bottom:61px}
+  #parrot2 .char-bubble::after{right:17px;bottom:-6px}
+  #owl .char-bubble{left:34px;bottom:65px}
+  #owl .char-bubble::after{left:17px;bottom:-6px}
+  .reset-btn,.counter-pill{position:absolute;z-index:60;top:12px;border:1px solid #ffe06a;background:#fffce8dd;box-shadow:0 4px 12px #0001;color:#4b421d}
+  .reset-btn{right:12px;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer}
+  .counter-pill{left:12px;border-radius:999px;padding:7px 11px;font:700 12px system-ui}
+  .reset-btn:hover{transform:rotate(-20deg);background:#fff7bd}
+  @media(max-width:520px){.char-bubble{width:145px;font-size:11px}.reset-btn{top:8px;right:8px}.counter-pill{top:8px;left:8px}}
+
+
+  .game-hud{position:absolute;z-index:61;top:12px;left:70px;display:flex;gap:6px;font:700 11px system-ui}
+  .game-hud span{background:#fffce8e8;border:1px solid #ffe06a;border-radius:999px;padding:7px 9px;box-shadow:0 4px 12px #0001}
+  .water-btn{position:absolute;z-index:61;right:12px;top:12px;border:1px solid #79c7ef;background:#eefaffee;border-radius:999px;padding:7px 11px;font:750 12px system-ui;color:#23566f;cursor:pointer;box-shadow:0 4px 12px #0001}
+  .water-btn:hover{transform:translateY(-1px)}
+  .water-drop{position:absolute;z-index:25;font-size:20px;pointer-events:none;animation:rainDrop .8s ease-in forwards}
+  @keyframes rainDrop{0%{transform:translateY(-15px);opacity:0}25%{opacity:1}100%{transform:translateY(105px);opacity:0}}
+  .flower.thirsty{filter:saturate(.72);transform-origin:bottom center}
+  .flower.very-thirsty{filter:saturate(.35) brightness(.92);opacity:.82}
+  .need-water{position:absolute;z-index:18;left:50%;bottom:17%;transform:translateX(-50%);background:#eefaffee;border:1px solid #9bd8f5;border-radius:999px;padding:5px 9px;font:700 11px system-ui;color:#23566f;opacity:0;transition:.25s;pointer-events:none}
+  .need-water.show{opacity:1}
+  @media(max-width:520px){.game-hud{top:48px;left:8px}.water-btn{top:48px;right:8px}}
+
+
+  .plant{position:absolute;bottom:13%;width:54px;height:115px;transform-origin:bottom center;pointer-events:none;z-index:8}
+  .plant .soil{position:absolute;bottom:-3px;left:10px;width:34px;height:12px;background:#8b5a2b;border-radius:50%}
+  .plant .seed{position:absolute;bottom:2px;left:22px;font-size:18px;transition:.4s}
+  .plant .sprout,.plant .bud,.plant .bloom{position:absolute;left:5px;bottom:0;width:46px;height:100px;opacity:0;transform:scale(.4);transform-origin:bottom center;transition:.6s}
+  .plant.stage-1 .seed{opacity:0}.plant.stage-1 .sprout{opacity:1;transform:scale(1)}
+  .plant.stage-2 .seed{opacity:0}.plant.stage-2 .bud{opacity:1;transform:scale(1)}
+  .plant.stage-3 .seed{opacity:0}.plant.stage-3 .bloom{opacity:1;transform:scale(1)}
+  .mini-stem{position:absolute;width:5px;height:62px;bottom:3px;left:21px;background:#4c9a46;border-radius:4px}
+  .mini-leaf{position:absolute;width:20px;height:10px;background:#62ad51;border-radius:100% 0 100% 0;bottom:32px;left:22px;transform:rotate(-20deg)}
+  .mini-leaf.left{left:5px;bottom:45px;transform:scaleX(-1) rotate(-20deg)}
+  .mini-head{position:absolute;bottom:58px;left:7px;font-size:34px;filter:drop-shadow(0 2px 2px #0002)}
+  .bud-dot{position:absolute;bottom:62px;left:16px;font-size:24px}
+  .plant.watered{animation:happyPlant .65s ease}
+  @keyframes happyPlant{50%{transform:scale(1.12) rotate(2deg)}}
+  .seed-tip{position:absolute;z-index:70;left:50%;bottom:11%;transform:translateX(-50%);background:#fffce9e8;border:1px solid #ffe06a;border-radius:999px;padding:6px 10px;font:700 11px system-ui;pointer-events:none;opacity:0;transition:.25s}
+  .seed-tip.show{opacity:1}
+
+
+  .grown-flower{position:absolute;left:0;bottom:0;width:54px;height:105px}
+  .grown-flower .gf-stem{position:absolute;left:25px;bottom:2px;width:5px;height:67px;background:#4c9a46;border-radius:5px}
+  .grown-flower .gf-leaf{position:absolute;width:23px;height:12px;background:#62ad51;border-radius:100% 0 100% 0;bottom:35px;left:27px;transform:rotate(-22deg)}
+  .grown-flower .gf-leaf.left{left:7px;bottom:48px;transform:scaleX(-1) rotate(-22deg)}
+  .grown-flower .gf-head{position:absolute;width:48px;height:48px;left:3px;bottom:59px;animation:flowerSway 2.4s ease-in-out infinite}
+  .grown-flower .gf-petal{position:absolute;left:19px;top:1px;width:11px;height:25px;background:#ffd51f;border-radius:60% 60% 45% 45%;transform-origin:5.5px 23px;box-shadow:inset 0 -3px 3px #e6a90044}
+  .grown-flower .gf-center{position:absolute;left:15px;top:15px;width:19px;height:19px;background:#7b4a20;border:4px solid #a76822;border-radius:50%;z-index:3}
+  @keyframes flowerSway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+
+
+  .garden-reset-btn{position:absolute;z-index:61;right:88px;top:12px;border:1px solid #e5d18a;background:#fffce8ee;border-radius:999px;padding:7px 10px;font:700 11px system-ui;color:#665b32;cursor:pointer;box-shadow:0 4px 12px #0001}
+  .garden-reset-btn:hover{transform:translateY(-1px);background:#fff7c8}
+  @media(max-width:520px){.garden-reset-btn{top:84px;right:8px}}
+
+
+  .reset-modal{position:absolute;inset:0;z-index:200;background:#2f321d66;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.2s;backdrop-filter:blur(2px)}
+  .reset-modal.open{opacity:1;visibility:visible}
+  .reset-card{width:min(310px,82%);background:#fffdf0;border:1px solid #ffe06a;border-radius:20px;padding:20px;text-align:center;box-shadow:0 18px 50px #0003;transform:scale(.9);transition:.2s;font-family:system-ui;color:#49401f}
+  .reset-modal.open .reset-card{transform:scale(1)}
+  .reset-icon{font-size:34px;margin-bottom:5px}
+  .reset-card strong{font-size:17px}
+  .reset-card p{font-size:12px;line-height:1.4;margin:7px 0 15px;color:#716746}
+  .reset-actions{display:flex;gap:8px;justify-content:center}
+  .reset-actions button{border:1px solid #e5d18a;background:#fff;border-radius:999px;padding:8px 13px;font:700 11px system-ui;cursor:pointer;color:#5b5130}
+  #confirmReset{background:#ffe86e;border-color:#e5c83d}
+
+
+/* Compact iframe layout */
+html,body{margin:0!important;width:100%!important;min-width:0!important;overflow:hidden!important}
+body{display:block!important}
+#scene,.scene{width:100%!important;max-width:none!important;min-width:0!important;height:100vh!important;min-height:280px!important;border-radius:0!important;margin:0!important}
+.game-hud{top:8px!important;left:8px!important;right:auto!important;display:flex!important;gap:4px!important;flex-wrap:nowrap!important}
+.game-hud span,.counter-pill{font-size:9px!important;padding:5px 7px!important}
+.counter-pill{top:8px!important;left:auto!important;right:8px!important}
+.water-btn{top:39px!important;right:8px!important;padding:6px 9px!important;font-size:10px!important}
+.garden-reset-btn{top:72px!important;right:8px!important;padding:6px 9px!important;font-size:10px!important}
+.hero,.intro,.card,.mission{max-width:calc(100% - 100px)!important;margin-left:10px!important;margin-right:auto!important;padding:10px!important;box-sizing:border-box!important}
+h1{font-size:clamp(17px,5vw,24px)!important;line-height:1.05!important;margin:3px 0 5px!important}
+.subtitle,.mission p,#progress{font-size:10px!important;line-height:1.25!important}
+.character .tag{display:none!important}
+.parrot.main{right:4%!important;bottom:15%!important;font-size:38px!important}
+.parrot.marketing{right:23%!important;bottom:12%!important;font-size:34px!important}
+.owl{left:4%!important;bottom:16%!important;font-size:36px!important}
+.char-bubble{width:min(145px,42vw)!important;font-size:9px!important;padding:7px 8px!important}
+.agent{font-size:9px!important;padding:5px 8px!important;max-width:65%!important}
+.seed-tip{font-size:9px!important;max-width:70%!important;text-align:center!important}
+.plant{transform-origin:bottom center!important}
+@media(max-width:420px){
+  .hero,.intro,.card,.mission{max-width:calc(100% - 92px)!important;padding:8px!important}
+  h1{font-size:16px!important}
+  .game-hud span{font-size:8px!important;padding:4px 6px!important}
+  .water-btn,.garden-reset-btn{font-size:9px!important}
+  .parrot.main{font-size:34px!important}
+  .parrot.marketing,.owl{font-size:31px!important}
+}
+@media(max-height:360px){
+  .parrot.main{bottom:8%!important}.parrot.marketing{bottom:6%!important}.owl{bottom:9%!important}
+  .agent{bottom:4px!important}
+}
+
+
+/* v6: compact chat HUD */
+.counter-pill{display:none!important}
+.game-hud{position:absolute!important;z-index:80!important;top:8px!important;left:8px!important;right:8px!important;display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:nowrap!important;padding-right:138px!important;box-sizing:border-box!important}
+.game-hud span{position:static!important;padding:5px 7px!important;font-size:9px!important;white-space:nowrap!important}
+.water-btn,.garden-reset-btn{position:absolute!important;z-index:81!important;top:8px!important;height:28px!important;padding:0 8px!important;font-size:9px!important;line-height:26px!important;white-space:nowrap!important;margin:0!important}
+.water-btn{right:8px!important}
+.garden-reset-btn{right:72px!important}
+.hero,.intro,.card,.mission{margin-top:45px!important;max-width:calc(100% - 24px)!important;width:auto!important;margin-left:12px!important;margin-right:12px!important;padding:9px 12px!important;box-sizing:border-box!important}
+h1{font-size:clamp(16px,4vw,22px)!important;margin:1px 0 4px!important;line-height:1.05!important}
+.subtitle,.mission p,#progress{font-size:10px!important;line-height:1.2!important}
+.parrot.main{right:5%!important;bottom:9%!important;font-size:37px!important}
+.parrot.marketing{right:22%!important;bottom:8%!important;font-size:33px!important}
+.owl{left:5%!important;bottom:10%!important;font-size:35px!important}
+@media(max-width:430px){.game-hud span{font-size:8px!important;padding:4px 5px!important}.water-btn,.garden-reset-btn{font-size:8px!important;padding:0 6px!important}.garden-reset-btn{right:65px!important}.game-hud{padding-right:126px!important}.hero,.intro,.card,.mission{margin-top:43px!important}}
+
+</style>
+</head>
+<body>
+<div class="scene" id="scene" aria-label="Jardín interactivo de flores amarillas">
+  <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+  <section class="card">
+    <div class="initial" id="initial"><h1>🌱 Hay algo creciendo por aquí...</h1><p class="msg">Misión: planta <b>6 flores amarillas</b> 🌻</p><p class="hint" id="progress">0/6 flores · toca cualquier parte del jardín</p></div>
+    <div class="final" id="final"><h1>🌻 Feliz 21 de septiembre, Vane 🌻</h1><p class="msg">Que tengas un bonito inicio de primavera :3</p></div>
+  </section>
+  <div class="garden" id="garden"></div>
+  <div class="character parrot main" id="parrot1" title="ChatLoro">🦜<span class="tag">ChatLoro</span><span class="char-bubble" id="bubble-chat"></span></div>
+  <div class="character parrot marketing hidden-char" id="parrot2" title="Agente de marketing">🦜<span class="tag">Marketing</span><span class="char-bubble" id="bubble-marketing"></span></div>
+  <div class="character owl hidden-char" id="owl" title="Agente sabia">🦉<span class="tag">Lechuza</span><span class="char-bubble" id="bubble-owl"></span></div>
+  <div class="counter-pill" id="savedCounter">🌻 0</div>
+  <div class="game-hud">
+    <span id="seedHud">🌱 0 semillas</span>
+    <span id="grownHud">🌻 0 flores</span>
+  </div>
+  <button class="water-btn" id="waterBtn" title="Regar jardín">💧 Regar</button>
+  <button class="garden-reset-btn" id="resetBtn" type="button" title="Reiniciar jardín">↻ Reiniciar</button>
+  <div class="reset-modal" id="resetModal" aria-hidden="true">
+    <div class="reset-card">
+      <div class="reset-icon">🌱</div>
+      <strong>¿Reiniciar el jardín?</strong>
+      <p>Se borrarán las semillas, flores y el progreso guardado.</p>
+      <div class="reset-actions">
+        <button type="button" id="cancelReset">Cancelar</button>
+        <button type="button" id="confirmReset">Sí, reiniciar</button>
+      </div>
+    </div>
+  </div>
+  <div class="seed-tip" id="seedTip">🌱 Semilla plantada. Ahora necesita agua 💧</div>
+  <div class="agent"><i class="dot"></i>flower-agent <span id="status">esperando misión...</span></div>
+</div>
+<script>
+const STORAGE_KEY='vane-flower-garden-v3';
+const scene=document.querySelector('#scene'),garden=document.querySelector('#garden'),
+status=document.querySelector('#status'),parrot1=document.querySelector('#parrot1'),
+parrot2=document.querySelector('#parrot2'),owl=document.querySelector('#owl'),
+initial=document.querySelector('#initial'),final=document.querySelector('#final'),
+progress=document.querySelector('#progress'),savedCounter=document.querySelector('#savedCounter'),
+waterBtn=document.querySelector('#waterBtn'),resetBtn=document.querySelector('#resetBtn'),
+resetModal=document.querySelector('#resetModal'),cancelReset=document.querySelector('#cancelReset'),
+confirmReset=document.querySelector('#confirmReset'),seedHud=document.querySelector('#seedHud'),
+grownHud=document.querySelector('#grownHud'),seedTip=document.querySelector('#seedTip');
+
+const bubbles={ChatLoro:document.querySelector('#bubble-chat'),Marketing:document.querySelector('#bubble-marketing'),Lechuza:document.querySelector('#bubble-owl')};
+let bubbleTimers={},tipTimer;
+let state={plants:[],missionCompleted:false,easter21:false,waterings:0};
+const goal=6;
+
+const seedLines=[
+ ['ChatLoro','Semilla desplegada 🌱. Ahora necesita agüita, agente 💧'],
+ ['Marketing','Tenemos materia prima. Falta convertirla en contenido... digo, flor 📈'],
+ ['ChatLoro','Puedes plantar varias primero y regarlas todas después :v'],
+ ['Lechuza','Toda gran flor comenzó siendo una semillita 🪄🌱']
+];
+const waterLines=[
+ ['ChatLoro','Riego ejecutado. Analizando crecimiento... 💧🤖'],
+ ['Marketing','Growth literalmente. Marketing aprueba 📈🌱'],
+ ['Lechuza','Aguamenti 💧🪄'],
+ ['ChatLoro','Subiendo versión de planta... 🌱 → 🌿'],
+ ['Lechuza','Un poco de agua y un poco de magia ✨']
+];
+const bloomLines=[
+ ['ChatLoro','¡Flor compilada correctamente! 🌻'],
+ ['Marketing','Conversión completada: semilla → flor. Excelente KPI 📈'],
+ ['Lechuza','Accio girasol... funcionó 🌻🪄']
+];
+
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s&&Array.isArray(s.plants))state={...state,...s}}catch(e){}}
+function say(name,text,duration=3300){
+ Object.values(bubbles).forEach(b=>b.classList.remove('show'));
+ const b=bubbles[name];if(!b)return;clearTimeout(bubbleTimers[name]);
+ b.textContent=text;b.classList.add('show');bubbleTimers[name]=setTimeout(()=>b.classList.remove('show'),duration);
+}
+function plantMarkup(p){
+ const el=document.createElement('div');el.className=`plant stage-${p.stage||0}`;el.dataset.id=p.id;
+ el.style.left=p.x+'%';el.style.scale=p.scale||1;
+ el.innerHTML=`<div class="soil"></div><div class="seed">🌰</div>
+ <div class="sprout"><i class="mini-stem" style="height:28px"></i><i class="mini-leaf" style="bottom:22px"></i><i class="mini-leaf left" style="bottom:14px"></i></div>
+ <div class="bud"><i class="mini-stem"></i><i class="mini-leaf"></i><i class="mini-leaf left"></i><span class="bud-dot">🌱</span></div>
+ <div class="bloom"><div class="grown-flower"><i class="gf-stem"></i><i class="gf-leaf"></i><i class="gf-leaf left"></i><div class="gf-head">${Array.from({length:10},(_,i)=>`<i class="gf-petal" style="transform:rotate(${i*36}deg)"></i>`).join('')}<i class="gf-center"></i></div></div></div>`;
+ garden.appendChild(el);return el;
+}
+function renderAll(){garden.innerHTML='';state.plants.forEach(plantMarkup)}
+function counts(){
+ return {
+   seeds:state.plants.filter(p=>p.stage===0).length,
+   growing:state.plants.filter(p=>p.stage>0&&p.stage<3).length,
+   flowers:state.plants.filter(p=>p.stage>=3).length
+ };
+}
+function updateUI(returning=false){
+ const c=counts(),total=state.plants.length;
+ savedCounter.textContent=`🌱 ${total}`;
+ seedHud.textContent=`🌱 ${c.seeds+c.growing} creciendo`;
+ grownHud.textContent=`🌻 ${c.flowers} flores`;
+ if(total>=3)parrot2.classList.add('arrived');else parrot2.classList.remove('arrived');
+ if(total>=5)owl.classList.add('arrived');else owl.classList.remove('arrived');
+ progress.textContent=c.flowers<goal?`${c.flowers}/${goal} flores listas · ${c.seeds+c.growing} creciendo`:`${c.flowers} flores · jardín libre 🌻`;
+ if(c.flowers>=goal){
+   initial.classList.add('hide');final.classList.add('show');state.missionCompleted=true;
+   status.textContent='misión completada · puedes seguir cultivando ✓';
+ }else{
+   initial.classList.remove('hide');final.classList.remove('show');
+   status.textContent=total?'planta semillas y riégalas para hacerlas crecer':'haz clic en el jardín para plantar una semilla';
+ }
+ if(returning&&total)setTimeout(()=>say('ChatLoro',c.seeds+c.growing?'Agente Vane ha vuelto. Hay plantitas esperando un poco de agua 💧':'Agente Vane ha vuelto. Tu jardín sigue aquí 🌻',4300),500);
+ save();
+}
+function sparkle(x,y,symbols=['✨','🌱']){
+ const s=document.createElement('div');s.className='spark';s.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ s.style.left=x+'px';s.style.top=y+'px';scene.appendChild(s);setTimeout(()=>s.remove(),850);
+}
+function addSeed(e){
+ if(e.target.closest('.character,.water-btn,.garden-reset-btn,.counter-pill,.game-hud'))return;
+ const r=scene.getBoundingClientRect(),x=Math.max(3,Math.min(91,((e.clientX-r.left)/r.width)*100-4));
+ const p={id:Date.now()+Math.random(),x:+x.toFixed(2),scale:+(.78+Math.random()*.35).toFixed(2),stage:0};
+ state.plants.push(p);plantMarkup(p);sparkle(e.clientX-r.left,e.clientY-r.top);
+ seedTip.classList.add('show');clearTimeout(tipTimer);tipTimer=setTimeout(()=>seedTip.classList.remove('show'),1800);
+ say(...seedLines[Math.floor(Math.random()*seedLines.length)]);updateUI();
+}
+function rain(){
+ for(let i=0;i<18;i++)setTimeout(()=>{const d=document.createElement('div');d.className='water-drop';d.textContent='💧';d.style.left=(10+Math.random()*80)+'%';d.style.top=(15+Math.random()*25)+'%';scene.appendChild(d);setTimeout(()=>d.remove(),900)},i*30);
+}
+function waterGarden(e){
+ e.stopPropagation();
+ if(!state.plants.length){say('ChatLoro','Primero planta algunas semillas 🌱');return}
+ const growable=state.plants.filter(p=>p.stage<3);
+ if(!growable.length){say('ChatLoro','Todas están florecidas 🌻. Puedes plantar más semillas si quieres :v');return}
+ rain();state.waterings++;
+ let bloomed=false;
+ growable.forEach(p=>{p.stage=Math.min(3,(p.stage||0)+1);if(p.stage===3)bloomed=true});
+ renderAll();
+ garden.querySelectorAll('.plant').forEach(el=>{el.classList.add('watered');setTimeout(()=>el.classList.remove('watered'),700)});
+ if(bloomed)say(...bloomLines[Math.floor(Math.random()*bloomLines.length)]);
+ else say(...waterLines[Math.floor(Math.random()*waterLines.length)]);
+ updateUI();
+ const c=counts();
+ if(c.flowers===21&&!state.easter21){state.easter21=true;save();setTimeout(()=>say('ChatLoro','🌻 21 flores para el 21. Easter egg desbloqueado ✨',4500),900)}
+}
+function openReset(e){
+ if(e)e.stopPropagation();
+ resetModal.classList.add('open');resetModal.setAttribute('aria-hidden','false');
+}
+function closeReset(e){
+ if(e)e.stopPropagation();
+ resetModal.classList.remove('open');resetModal.setAttribute('aria-hidden','true');
+}
+function resetGarden(e){
+ if(e)e.stopPropagation();
+ state={plants:[],missionCompleted:false,easter21:false,waterings:0};
+ try{localStorage.removeItem(STORAGE_KEY)}catch(err){}
+ garden.innerHTML='';
+ closeReset();
+ updateUI(false);
+ parrot2.classList.remove('arrived');owl.classList.remove('arrived');
+ say('ChatLoro','Jardín reiniciado. Tenemos terreno nuevo, agente 🌱');
+}
+scene.addEventListener('click',addSeed);
+waterBtn.addEventListener('click',waterGarden);
+resetBtn.addEventListener('click',openReset);
+cancelReset.addEventListener('click',closeReset);
+confirmReset.addEventListener('click',resetGarden);
+resetModal.addEventListener('click',e=>{if(e.target===resetModal)closeReset(e)});
+parrot1.addEventListener('click',e=>{e.stopPropagation();say('ChatLoro',['Ciclo actual: semilla → brote → capullo → flor 🌱🌻','Puedes plantar muchas y regarlas juntas. Eficiencia de agentes 🤖','No soy ChatGPT, soy ChatLoro. Jardinero certificado :v'][Math.floor(Math.random()*3)])});
+parrot2.addEventListener('click',e=>{e.stopPropagation();say('Marketing',['Esto sí es growth marketing... literalmente 🌱📈','Necesitamos más flores para el algoritmo 👀','¿Y si hacemos un reel del crecimiento? 🎬'][Math.floor(Math.random()*3)])});
+owl.addEventListener('click',e=>{e.stopPropagation();say('Lechuza',['Aguamenti hace maravillas por aquí 💧🪄','Tres riegos convierten una semilla en flor. Magia... o botánica.','Hogwarts aprueba este jardín 🌻'][Math.floor(Math.random()*3)])});
+
+load();renderAll();updateUI(state.plants.length>0);
+</script>
+</body>
+</html>
